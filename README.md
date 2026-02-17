@@ -25,6 +25,45 @@ The system consists of four main components:
 - **Cache/Queue**: Redis
 - **Deployment**: Docker, Docker Compose, Render
 
+## 📸 Screenshots & Demo
+
+The platform features a minimal, modern dark theme with pure black background and crisp white text for optimal readability and focus.
+
+### Dashboard
+![Dashboard](docs/screenshots/dashboard-home-loading.png)
+
+The main dashboard displays key metrics, quick evaluation options, and recent activity with a clean, distraction-free interface.
+
+### Automations
+![Automations Page](docs/screenshots/automations-page.png)
+
+Manage your TinyFISH automation configurations with an intuitive interface.
+
+### Scenarios
+![Scenarios Page](docs/screenshots/scenarios-page.png)
+
+Create and configure test scenarios for benchmarking LLM performance.
+
+### Runs
+![Runs Page](docs/screenshots/runs-page.png)
+
+Track and analyze all evaluation runs with comprehensive filtering and status indicators.
+
+### Demo Video
+
+**Quick Demo Walkthrough:**
+1. **Dashboard** - View overall metrics and recent activity at a glance
+2. **Automations** - Configure LLM automation settings and parameters
+3. **Scenarios** - Define test cases and benchmarking scenarios
+4. **Runs** - Monitor execution history with real-time status updates
+
+The interface prioritizes clarity and efficiency with:
+- Pure black (`#000000`) background for reduced eye strain
+- White (`#FFFFFF`) text for maximum contrast
+- Minimal UI elements that focus on essential information
+- Clean borders and spacing for visual hierarchy
+- Consistent design language across all pages
+
 ## Features
 
 ### Current Implementation
