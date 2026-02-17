@@ -2,7 +2,7 @@
 set -e
 
 echo "Running database migrations..."
-cd /app/..
-alembic -c database/alembic.ini upgrade head
+# The database directory is at /database in the container
+alembic -c /database/alembic.ini upgrade head
 
 echo "Migrations completed successfully!"
