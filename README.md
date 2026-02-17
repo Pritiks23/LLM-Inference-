@@ -2,6 +2,12 @@
 
 A Real-Time LLM Benchmarking Agent for TinyFish (Mino) automation runs with a custom web dashboard. This system monitors, benchmarks, and evaluates LLM performance with comprehensive metrics and a clean UI.
 
+## 🚀 Quick Deploy to Render
+
+Ready to deploy? See our quick start guides:
+- **[Quick Start Guide](docs/QUICK_START_RENDER.md)** - Deploy in 5 steps (~15 minutes)
+- **[Complete Deployment Guide](docs/RENDER_DEPLOYMENT.md)** - Detailed instructions with troubleshooting
+
 ## Architecture
 
 The system consists of four main components:
