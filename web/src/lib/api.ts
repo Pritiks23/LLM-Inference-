@@ -56,6 +56,8 @@ export interface TriggerRunRequest {
 }
 
 // API Configuration
+// IMPORTANT: Set NEXT_PUBLIC_API_URL environment variable in production
+// The default localhost URL is only suitable for local development
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 const API_V1_PREFIX = '/api/v1';
 
@@ -72,7 +74,16 @@ async function fetchAPI<T>(endpoint: string, options?: RequestInit): Promise<T> 
   });
 
   if (!response.ok) {
-    throw new Error(`API error: ${response.statusText}`);
+    let errorMessage = `API error (${response.status}): ${response.statusText}`;
+    try {
+      const errorData = await response.json();
+      if (errorData.detail) {
+        errorMessage += ` - ${errorData.detail}`;
+      }
+    } catch {
+      // If parsing fails, just use the basic error message
+    }
+    throw new Error(errorMessage);
   }
 
   return response.json();
