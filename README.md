@@ -2,6 +2,12 @@
 
 A Real-Time LLM Benchmarking Agent for TinyFish (Mino) automation runs with a custom web dashboard. This system monitors, benchmarks, and evaluates LLM performance with comprehensive metrics and a clean UI.
 
+## 🚀 Quick Deploy to Render
+
+Ready to deploy? See our quick start guides:
+- **[Quick Start Guide](docs/QUICK_START_RENDER.md)** - Deploy in 5 steps (~15 minutes)
+- **[Complete Deployment Guide](docs/RENDER_DEPLOYMENT.md)** - Detailed instructions with troubleshooting
+
 ## Architecture
 
 The system consists of four main components:
@@ -107,41 +113,32 @@ make shell-db       # Open PostgreSQL shell
 
 ## Render Deployment
 
-### Prerequisites
+For detailed step-by-step deployment instructions, see **[RENDER_DEPLOYMENT.md](docs/RENDER_DEPLOYMENT.md)**.
 
-1. Render account
-2. TinyFish API key (optional for mock mode)
+### Quick Start
 
-### Deployment Steps
+1. **Push this repository to GitHub**
 
-1. **Fork or push this repository to GitHub**
-
-2. **Create a new Blueprint instance on Render**
-   - Go to Render Dashboard
+2. **Create a new Blueprint on Render**
+   - Go to [Render Dashboard](https://dashboard.render.com/)
    - Click "New" → "Blueprint"
    - Connect your GitHub repository
-   - Select this repository
+   - Render will detect `render.yaml` and create all services
 
 3. **Configure Environment Variables**
    
-   Render will automatically create all services defined in `render.yaml`. You need to set:
-   
-   **For API and Worker services:**
-   - `TINYFISH_API_KEY`: Your TinyFish API key
-   - `TINYFISH_MOCK_MODE`: Set to `false` for production
-   
-   **Optional overrides:**
-   - `TINYFISH_BASE_URL`: Default is `https://agent.tinyfish.ai`
-   - `TINYFISH_AUTOMATION_ENDPOINT`: Default is `/api/v1/automation/run`
+   Set these in the Render Dashboard for API and Worker services:
+   - `TINYFISH_API_KEY`: Your TinyFish API key (or use mock mode)
+   - `TINYFISH_MOCK_MODE`: Set to `false` for production, `true` for testing
 
-4. **Deploy**
-   - Render will automatically deploy all services
-   - Wait for deployment to complete
+4. **Deploy and Access**
+   - Wait for all services to deploy (~10-15 minutes)
    - Access your web dashboard at the provided URL
+   - API docs available at `https://your-api-url.onrender.com/docs`
 
 ### Services Created
 
-- **benchmarking-db**: PostgreSQL database (Starter plan)
+- **benchmarking-db**: PostgreSQL database (auto-managed)
 - **benchmarking-redis**: Redis cache (Starter plan)
 - **benchmarking-api**: FastAPI backend (Web service)
 - **benchmarking-web**: Next.js frontend (Web service)

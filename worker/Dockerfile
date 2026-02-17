@@ -7,12 +7,16 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
+COPY worker/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app ./app
+COPY worker/app ./app
 
-# Note: Worker uses shared models from API via volume mount or copy
+# Copy API models for shared code
+COPY api/app/models ./api_models
+COPY api/app/core ./api_core
+
+# Note: Worker uses shared models from API
 # In production, ensure models are accessible
 
 CMD ["celery", "-A", "app.worker", "worker", "--loglevel=info"]
