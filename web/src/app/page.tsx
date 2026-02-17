@@ -60,30 +60,30 @@ export default function HomePage() {
   return (
     <div className="space-y-12">
       {/* Hero Section */}
-      <div className="text-center space-y-4 py-8">
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      <div className="text-center space-y-4 py-12 border-b border-border">
+        <h1 className="text-5xl font-bold text-foreground tracking-tight">
           LLM Evaluation Platform
         </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           Benchmark and compare different Large Language Models using TinyFISH automation.
           Create scenarios, run evaluations, and analyze performance metrics in real-time.
         </p>
-        <div className="flex gap-4 justify-center pt-4">
+        <div className="flex gap-4 justify-center pt-6">
           <Link href="/scenarios">
-            <Button size="lg">Create Scenario</Button>
+            <Button size="lg" className="font-semibold">Create Scenario</Button>
           </Link>
           <Link href="/runs">
-            <Button size="lg" variant="outline">View All Runs</Button>
+            <Button size="lg" variant="outline" className="font-semibold">View All Runs</Button>
           </Link>
         </div>
       </div>
 
       {/* Quick Stats */}
       {kpis && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card className="border-l-4 border-l-blue-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Card className="border-l-4 border-l-foreground">
             <CardHeader className="pb-2">
-              <CardDescription className="text-xs uppercase font-semibold">Total Evaluations</CardDescription>
+              <CardDescription className="text-xs uppercase font-semibold tracking-wide">Total Evaluations</CardDescription>
               <CardTitle className="text-4xl font-bold">{kpis.total_runs}</CardTitle>
             </CardHeader>
             <CardContent>
@@ -91,9 +91,9 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-l-4 border-l-green-500">
+          <Card className="border-l-4 border-l-foreground">
             <CardHeader className="pb-2">
-              <CardDescription className="text-xs uppercase font-semibold">Success Rate</CardDescription>
+              <CardDescription className="text-xs uppercase font-semibold tracking-wide">Success Rate</CardDescription>
               <CardTitle className="text-4xl font-bold">
                 {kpis.success_rate.toFixed(1)}%
               </CardTitle>
@@ -103,9 +103,9 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-l-4 border-l-purple-500">
+          <Card className="border-l-4 border-l-foreground">
             <CardHeader className="pb-2">
-              <CardDescription className="text-xs uppercase font-semibold">Avg Response Time</CardDescription>
+              <CardDescription className="text-xs uppercase font-semibold tracking-wide">Avg Response Time</CardDescription>
               <CardTitle className="text-4xl font-bold">
                 {kpis.total_time_stats.p50
                   ? `${kpis.total_time_stats.p50.toFixed(0)}ms`
@@ -117,9 +117,9 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-l-4 border-l-orange-500">
+          <Card className="border-l-4 border-l-foreground">
             <CardHeader className="pb-2">
-              <CardDescription className="text-xs uppercase font-semibold">P95 Response Time</CardDescription>
+              <CardDescription className="text-xs uppercase font-semibold tracking-wide">P95 Response Time</CardDescription>
               <CardTitle className="text-4xl font-bold">
                 {kpis.total_time_stats.p95
                   ? `${kpis.total_time_stats.p95.toFixed(0)}ms`
@@ -136,14 +136,14 @@ export default function HomePage() {
       {/* Quick Evaluate Section */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Quick Evaluate</CardTitle>
+          <CardTitle className="text-2xl font-bold">Quick Evaluate</CardTitle>
           <CardDescription>
             Run a quick evaluation using one of your existing scenarios
           </CardDescription>
         </CardHeader>
         <CardContent>
           {scenarios.length === 0 ? (
-            <div className="text-center py-8 space-y-4">
+            <div className="text-center py-12 space-y-4">
               <p className="text-muted-foreground">No scenarios available yet.</p>
               <Link href="/scenarios">
                 <Button>Create Your First Scenario</Button>
@@ -152,7 +152,7 @@ export default function HomePage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {scenarios.slice(0, 4).map((scenario) => (
-                <Card key={scenario.id} className="hover:shadow-lg transition-shadow">
+                <Card key={scenario.id} className="hover:border-foreground transition-colors">
                   <CardContent className="pt-6">
                     <div className="space-y-3">
                       <div>
@@ -167,7 +167,7 @@ export default function HomePage() {
                         <Badge variant="outline">Automation #{scenario.automation_id}</Badge>
                       </div>
                       <Button
-                        className="w-full"
+                        className="w-full font-semibold"
                         onClick={() => handleQuickEvaluate(scenario.id)}
                         disabled={evaluating === scenario.id}
                       >
@@ -195,7 +195,7 @@ export default function HomePage() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-2xl">Recent Activity</CardTitle>
+                <CardTitle className="text-2xl font-bold">Recent Activity</CardTitle>
                 <CardDescription>Latest evaluation runs</CardDescription>
               </div>
               <Link href="/runs">
@@ -208,7 +208,7 @@ export default function HomePage() {
               {kpis.recent_runs.map((run) => (
                 <div
                   key={run.id}
-                  className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent transition-colors"
+                  className="flex items-center justify-between p-4 border rounded-lg hover:border-foreground transition-colors"
                 >
                   <div className="flex-1">
                     <div className="flex items-center gap-3">
@@ -248,37 +248,37 @@ export default function HomePage() {
       )}
 
       {/* How It Works */}
-      <Card className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950">
+      <Card className="border-2">
         <CardHeader>
-          <CardTitle className="text-2xl">How It Works</CardTitle>
+          <CardTitle className="text-2xl font-bold">How It Works</CardTitle>
           <CardDescription>Evaluate LLMs in three simple steps</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="space-y-2">
-              <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-bold">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center text-xl font-bold">
                 1
               </div>
-              <h3 className="font-semibold text-lg">Create Automation</h3>
-              <p className="text-sm text-muted-foreground">
+              <h3 className="font-bold text-lg">Create Automation</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 Configure your LLM automation with TinyFISH API settings and parameters
               </p>
             </div>
-            <div className="space-y-2">
-              <div className="w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center text-xl font-bold">
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center text-xl font-bold">
                 2
               </div>
-              <h3 className="font-semibold text-lg">Define Scenarios</h3>
-              <p className="text-sm text-muted-foreground">
+              <h3 className="font-bold text-lg">Define Scenarios</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 Set up test scenarios with prompts and expected behavior for benchmarking
               </p>
             </div>
-            <div className="space-y-2">
-              <div className="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center text-xl font-bold">
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center text-xl font-bold">
                 3
               </div>
-              <h3 className="font-semibold text-lg">Run & Analyze</h3>
-              <p className="text-sm text-muted-foreground">
+              <h3 className="font-bold text-lg">Run & Analyze</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 Execute evaluations and analyze performance metrics, response times, and quality
               </p>
             </div>
