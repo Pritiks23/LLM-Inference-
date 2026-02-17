@@ -1,6 +1,7 @@
 import httpx
 import time
 import random
+import asyncio
 from datetime import datetime
 from typing import Optional, Dict, Any
 from app.core.config import settings
@@ -67,8 +68,6 @@ def execute_benchmark_run(
     Execute a benchmark run synchronously.
     This is called as a background task from the API.
     """
-    import asyncio
-    
     db = SessionLocal()
     try:
         # Get run, scenario, and automation
