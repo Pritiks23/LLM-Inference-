@@ -29,8 +29,8 @@ services:
 
   api:
     build:
-      context: ./api
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: api/Dockerfile
     ports:
       - "8000:8000"
     environment:
@@ -64,8 +64,8 @@ services:
 
   worker:
     build:
-      context: ./worker
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: worker/Dockerfile
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/benchmarking
       TINYFISH_MOCK_MODE: "true"
