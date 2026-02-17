@@ -14,7 +14,7 @@ The system consists of four main components:
 ### Technology Stack
 
 - **Backend**: FastAPI, SQLAlchemy, Alembic, Celery
-- **Frontend**: Next.js 14 (App Router), React, Tailwind CSS, shadcn/ui
+- **Frontend**: Next.js 15 (App Router), React, Tailwind CSS, shadcn/ui
 - **Database**: PostgreSQL
 - **Cache/Queue**: Redis
 - **Deployment**: Docker, Docker Compose, Render
