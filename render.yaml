@@ -1,0 +1,95 @@
+services:
+  # PostgreSQL Database
+  - type: pserv
+    name: benchmarking-db
+    env: docker
+    plan: starter
+    region: oregon
+    
+  # Redis for Celery
+  - type: redis
+    name: benchmarking-redis
+    plan: starter
+    region: oregon
+    maxmemoryPolicy: noeviction
+
+  # FastAPI Backend
+  - type: web
+    name: benchmarking-api
+    env: docker
+    region: oregon
+    plan: starter
+    dockerfilePath: ./api/Dockerfile
+    dockerContext: ./api
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: benchmarking-db
+          property: connectionString
+      - key: CELERY_BROKER_URL
+        fromService:
+          type: redis
+          name: benchmarking-redis
+          property: connectionString
+      - key: CELERY_RESULT_BACKEND
+        fromService:
+          type: redis
+          name: benchmarking-redis
+          property: connectionString
+      - key: TINYFISH_API_KEY
+        sync: false
+      - key: TINYFISH_MOCK_MODE
+        value: "false"
+      - key: TINYFISH_BASE_URL
+        value: "https://agent.tinyfish.ai"
+    healthCheckPath: /health
+
+  # Next.js Frontend
+  - type: web
+    name: benchmarking-web
+    env: docker
+    region: oregon
+    plan: starter
+    dockerfilePath: ./web/Dockerfile
+    dockerContext: ./web
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: benchmarking-api
+          envVarKey: RENDER_EXTERNAL_URL
+
+  # Background Worker
+  - type: worker
+    name: benchmarking-worker
+    env: docker
+    region: oregon
+    plan: starter
+    dockerfilePath: ./worker/Dockerfile
+    dockerContext: ./worker
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: benchmarking-db
+          property: connectionString
+      - key: CELERY_BROKER_URL
+        fromService:
+          type: redis
+          name: benchmarking-redis
+          property: connectionString
+      - key: CELERY_RESULT_BACKEND
+        fromService:
+          type: redis
+          name: benchmarking-redis
+          property: connectionString
+      - key: TINYFISH_API_KEY
+        sync: false
+      - key: TINYFISH_MOCK_MODE
+        value: "false"
+
+databases:
+  - name: benchmarking-db
+    databaseName: benchmarking
+    user: benchmarking
+    region: oregon
+    plan: starter
