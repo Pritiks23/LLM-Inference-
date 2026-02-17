@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+- Fixed Web CI workflow failure by removing package-lock.json cache dependency
+- Changed from `npm ci` to `npm install` in CI workflow since package-lock.json is not committed
+
 ### Security
 - **CRITICAL**: Updated Next.js from 14.1.0 to 15.2.8 to address multiple security vulnerabilities:
   - CVE: HTTP request deserialization DoS with insecure React Server Components
