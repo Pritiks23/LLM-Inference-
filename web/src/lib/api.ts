@@ -55,6 +55,21 @@ export interface TriggerRunRequest {
   inputs_override?: Record<string, any>;
 }
 
+export interface CreateAutomationRequest {
+  name: string;
+  tinyfish_automation_id: string;
+  description?: string;
+  default_inputs?: Record<string, any>;
+}
+
+export interface CreateScenarioRequest {
+  name: string;
+  automation_id: number;
+  description?: string;
+  inputs_template?: Record<string, any>;
+  run_settings?: Record<string, any>;
+}
+
 // API Configuration
 // IMPORTANT: Set NEXT_PUBLIC_API_URL environment variable in production
 // The default localhost URL is only suitable for local development
@@ -100,6 +115,13 @@ export const api = {
     return fetchAPI<Automation>(`/automations/${id}`);
   },
 
+  async createAutomation(data: CreateAutomationRequest): Promise<Automation> {
+    return fetchAPI<Automation>('/automations', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
   // Scenarios
   async getScenarios(automationId?: number): Promise<Scenario[]> {
     const params = automationId ? `?automation_id=${automationId}` : '';
@@ -108,6 +130,13 @@ export const api = {
 
   async getScenario(id: number): Promise<Scenario> {
     return fetchAPI<Scenario>(`/scenarios/${id}`);
+  },
+
+  async createScenario(data: CreateScenarioRequest): Promise<Scenario> {
+    return fetchAPI<Scenario>('/scenarios', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
   },
 
   // Runs
