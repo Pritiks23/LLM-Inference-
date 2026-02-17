@@ -30,22 +30,22 @@ The system consists of four main components:
 The platform features a minimal, modern dark theme with pure black background and crisp white text for optimal readability and focus.
 
 ### Dashboard
-![Dashboard](https://github.com/user-attachments/assets/a7f487a4-14a6-4468-ac2c-edffffcd1cd2)
+![Dashboard](docs/screenshots/dashboard-home-loading.png)
 
 The main dashboard displays key metrics, quick evaluation options, and recent activity with a clean, distraction-free interface.
 
 ### Automations
-![Automations Page](https://github.com/user-attachments/assets/135b0c2b-0989-4883-abcd-841829207f7e)
+![Automations Page](docs/screenshots/automations-page.png)
 
 Manage your TinyFISH automation configurations with an intuitive interface.
 
 ### Scenarios
-![Scenarios Page](https://github.com/user-attachments/assets/270e039d-bb40-49dc-9ea5-cfb1073356a3)
+![Scenarios Page](docs/screenshots/scenarios-page.png)
 
 Create and configure test scenarios for benchmarking LLM performance.
 
 ### Runs
-![Runs Page](https://github.com/user-attachments/assets/77b79656-ee78-465a-9ec2-a7369b52ed39)
+![Runs Page](docs/screenshots/runs-page.png)
 
 Track and analyze all evaluation runs with comprehensive filtering and status indicators.
 
