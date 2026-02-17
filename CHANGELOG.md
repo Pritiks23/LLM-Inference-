@@ -9,7 +9,8 @@ All notable changes to this project will be documented in this file.
 - Changed from `npm ci` to `npm install` in CI workflow since package-lock.json is not committed
 
 ### Security
-- **CRITICAL**: Updated Next.js from 14.1.0 to 15.2.8 to address multiple security vulnerabilities:
+- **CRITICAL**: Updated Next.js from 15.2.8 to 15.2.9 to fix HTTP request deserialization DoS vulnerability
+- **CRITICAL**: Updated Next.js from 14.1.0 to 15.2.9 to address multiple security vulnerabilities:
   - CVE: HTTP request deserialization DoS with insecure React Server Components
   - CVE: Denial of Service with Server Components (multiple incomplete fix follow-ups)
   - CVE: Authorization bypass vulnerability
@@ -17,10 +18,10 @@ All notable changes to this project will be documented in this file.
   - CVE: Server-Side Request Forgery in Server Actions
   - CVE: Authorization Bypass in Next.js Middleware
   
-  All users are strongly recommended to update to this version immediately.
+  All users are strongly recommended to update to version 15.2.9 immediately.
 
 ### Changed
-- Updated `eslint-config-next` to 15.2.8 to match Next.js version
+- Updated `eslint-config-next` to 15.2.9 to match Next.js version
 
 ## [1.0.0] - 2026-02-17
 
