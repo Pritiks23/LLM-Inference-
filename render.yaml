@@ -1,11 +1,4 @@
 services:
-  # PostgreSQL Database
-  - type: pserv
-    name: benchmarking-db
-    env: docker
-    plan: starter
-    region: oregon
-    
   # Redis for Celery
   - type: redis
     name: benchmarking-redis
@@ -20,7 +13,7 @@ services:
     region: oregon
     plan: starter
     dockerfilePath: ./api/Dockerfile
-    dockerContext: ./api
+    dockerContext: .
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -51,7 +44,7 @@ services:
     region: oregon
     plan: starter
     dockerfilePath: ./web/Dockerfile
-    dockerContext: ./web
+    dockerContext: .
     envVars:
       - key: NEXT_PUBLIC_API_URL
         fromService:
@@ -66,7 +59,7 @@ services:
     region: oregon
     plan: starter
     dockerfilePath: ./worker/Dockerfile
-    dockerContext: ./worker
+    dockerContext: .
     envVars:
       - key: DATABASE_URL
         fromDatabase:
